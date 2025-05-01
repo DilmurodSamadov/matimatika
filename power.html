@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Kompleks Sonlarni Darajaga Ko'tarish</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffe6e6, #990000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+            color: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0 10px;
+            font-size: 16px;
+            background: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .back-btn {
+            background: #e6e6e6;
+            margin-top: 10px;
+        }
+
+        #result {
+            color: white;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kompleks sonni darajaga ko'tarish</h1>
+        
+        <div class="input-group">
+            <label for="real">a (haqiqiy qism):</label>
+            <input type="number" id="real" placeholder="Haqiqiy qismni kiriting">
+        </div>
+        
+        <div class="input-group">
+            <label for="imaginary">b (mavhum qism):</label>
+            <input type="number" id="imaginary" placeholder="Mavhum qismni kiriting">
+        </div>
+        
+        <div class="input-group">
+            <label for="power">n (daraja):</label>
+            <input type="number" id="power" placeholder="Darajani kiriting">
+        </div>
+        
+        <button id="calculate">Hisoblash</button>
+        
+        <div id="result">Natija:</div>
+        
+        <button class="back-btn" onclick="window.location.href='index.html'">Orqaga</button>
+    </div>
+
+    <script>
+        document.getElementById('calculate').addEventListener('click', function() {
+            const real = parseFloat(document.getElementById('real').value);
+            const imaginary = parseFloat(document.getElementById('imaginary').value);
+            const power = parseFloat(document.getElementById('power').value);
+            
+            if (isNaN(real) || isNaN(imaginary) || isNaN(power)) {
+                document.getElementById('result').textContent = "Iltimos, barcha qiymatlarni kiriting!";
+                return;
+            }
+            
+            // Convert to trigonometric form first
+            const modulus = Math.sqrt(real * real + imaginary * imaginary);
+            const argument = Math.atan2(imaginary, real);
+            
+            // Apply De Moivre's formula
+            const newModulus = Math.pow(modulus, power);
+            const newArgument = argument * power;
+            
+            // Convert back to rectangular form
+            const newReal = newModulus * Math.cos(newArgument);
+            const newImaginary = newModulus * Math.sin(newArgument);
+            
+            // Display the result
+            document.getElementById('result').innerHTML = 
+                `${power}-darajaga ko'tarilgan natija:<br>
+                 ${newReal.toFixed(4)} + ${newImaginary.toFixed(4)}i<br><br>
+                 Trigonometrik ko'rinishda:<br>
+                 ${newModulus.toFixed(4)}(cos(${(newArgument * 180/Math.PI).toFixed(2)}°) + i·sin(${(newArgument * 180/Math.PI).toFixed(2)}°))`;
+        });
+    </script>
+</body>
+</html>

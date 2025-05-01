@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Kompleks Sonlar Platformasi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffe6e6, #990000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 300px;
+        }
+
+        
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            background: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+    <script>
+        function openIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Kompleks sonlar ustida amallar bajaruvchi platformaga xush kelibsiz</h1>
+        <button onclick="openIndex()">1. Kompleks sonlar ustida sodda amallar</button>
+        <button onclick="window.location.href='trigonometric.html'">2. Trigonometrik ko'rinishga o'tkazish</button>
+        <button onclick="window.location.href='power.html'">3. Darajaga ko'tarish</button>
+        <button>4. Ildiz olish</button>
+    </div>
+</body>
+</html>
